@@ -1,9 +1,22 @@
+"use client"
+
 import Link from "next/link"
 import { ThemeToggle } from "./theme-toggle"
 import { siteConfig } from "@/config/site"
 import { Button } from "./ui/button"
+import { authClient } from "@/lib/auth-client"
+import { useRouter } from "next/navigation"
 
 export function Navbar() {
+  const { data: session } = authClient.useSession()
+  const router = useRouter()
+
+  const handleSignOut = async () => {
+    await authClient.signOut()
+    router.push("/login")
+    router.refresh()
+  }
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
@@ -15,23 +28,37 @@ export function Navbar() {
           </Link>
           <nav className="hidden md:flex gap-6">
             <Link
-              href="/docs"
+              href="/dashboard"
               className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              Documentation
+              Dashboard
+            </Link>
+            <Link
+              href="/profile"
+              className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              Profile
             </Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">
           <nav className="flex items-center gap-2">
-            <Link href="/login">
-              <Button variant="ghost" size="sm">
-                Login
+            {!session ? (
+              <>
+                <Link href="/login">
+                  <Button variant="ghost" size="sm">
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/register">
+                  <Button size="sm">Get Started</Button>
+                </Link>
+              </>
+            ) : (
+              <Button onClick={handleSignOut} variant="ghost" size="sm">
+                Sign Out
               </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm">Get Started</Button>
-            </Link>
+            )}
             <ThemeToggle />
           </nav>
         </div>
