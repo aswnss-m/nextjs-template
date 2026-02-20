@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { ThemeToggle } from "./theme-toggle"
-import { siteConfig } from "@/config/site"
-import { Button } from "./ui/button"
-import { authClient } from "@/lib/auth-client"
-import { useRouter } from "next/navigation"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { siteConfig } from "@/config/site";
+import { authClient } from "@/lib/auth-client";
+import { ThemeToggle } from "./theme-toggle";
+import { Button } from "./ui/button";
 
 export function Navbar() {
-  const { data: session } = authClient.useSession()
-  const router = useRouter()
+  const { data: session } = authClient.useSession();
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    await authClient.signOut()
-    router.push("/login")
-    router.refresh()
-  }
+    await authClient.signOut();
+    router.push("/login");
+    router.refresh();
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm">
@@ -64,5 +64,5 @@ export function Navbar() {
         </div>
       </div>
     </header>
-  )
+  );
 }

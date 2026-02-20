@@ -1,4 +1,4 @@
-import { siteConfig } from "@/config/site"
+import { siteConfig } from "@/config/site";
 
 export function Footer() {
   return (
@@ -27,10 +27,12 @@ export function Footer() {
             .
           </p>
           <div className="flex items-center gap-4 text-sm font-medium text-muted-foreground">
-            <span>&copy; {new Date().getFullYear()} {siteConfig.name}</span>
+            <span>
+              &copy; {new Date().getFullYear()} {siteConfig.name}
+            </span>
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

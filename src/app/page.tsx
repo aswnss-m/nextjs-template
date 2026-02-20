@@ -1,5 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -49,7 +56,8 @@ export default function Home() {
                   Missing Configuration
                 </p>
                 <p className="text-xs text-yellow-700 dark:text-yellow-300 mt-1">
-                  Don&apos;t forget to set up your <code>.env</code> file based on <code>.env.sample</code>.
+                  Don&apos;t forget to set up your <code>.env</code> file based
+                  on <code>.env.sample</code>.
                 </p>
               </div>
             </CardContent>
