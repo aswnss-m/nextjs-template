@@ -28,12 +28,12 @@ import { Input } from "@/components/ui/input";
 import { authClient } from "@/lib/auth-client";
 
 const loginSchema = z.object({
-  email: z.string().email("Invalid email address"),
+  email: z.string("Invalid email address").refine((val) => /\S+@\S+\.\S+/.test(val), "Invalid email address"),
   password: z.string().min(8, "Password must be at least 8 characters"),
 });
 
 export default function LoginPage() {
-  const [loading, setLoading] = useState(false);
+  const [ loading, setLoading ] = useState(false);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof loginSchema>>({
@@ -46,7 +46,7 @@ export default function LoginPage() {
 
   async function onSubmit(values: z.infer<typeof loginSchema>) {
     setLoading(true);
-    const { data, error } = await authClient.signIn.email({
+    const { error } = await authClient.signIn.email({
       email: values.email,
       password: values.password,
     });
