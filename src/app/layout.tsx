@@ -9,12 +9,12 @@ import { siteConfig } from "@/config/site";
 // Font files
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: [ "latin" ],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: [ "latin" ],
 });
 
 // Site metadata ,checkout @/config/site and ./manifest.ts to add more details
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
-  authors: [{ name: siteConfig.author, url: siteConfig.links.github }],
+  authors: [ { name: siteConfig.author, url: siteConfig.links.github } ],
   creator: siteConfig.author,
   alternates: {
     canonical: siteConfig.url,
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}/og.png`],
+    images: [ `${siteConfig.url}/og.png` ],
     creator: siteConfig.links.twitter,
   },
   icons: {
@@ -74,7 +74,7 @@ export default function RootLayout({
         //? The theme provider makes the hydration errors, that is why we have to supress hydration warning on the parent element body
       }
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-background antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
         <ThemeProvider
